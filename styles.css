@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Dorfer Solutions — Professional Theme (Charcoal · Royal Blue · Gold)
+   ========================================================================== */
+
+:root {
+  --brand-950: #0B0F1A;
+  --brand-900: #111827;
+  --brand-800: #1F2937;
+  --blue-500:  #2563EB;
+  --blue-600:  #1D4ED8;
+  --blue-700:  #1E40AF;
+  --gold-500:  #F59E0B;
+  --gold-600:  #D97706;
+  --slate-50:  #F8FAFC;
+  --slate-900: #0F172A;
+  --white:     #FFFFFF;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: var(--slate-900);
+  background: var(--white);
+}
+
+.copy { font-size: 1.0625rem; line-height: 1.75; }
+
+:focus-visible {
+  outline: 3px solid var(--blue-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection { background: var(--blue-500); color: #fff; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--gold-500); color: var(--brand-900);
+  font-weight: 700; padding: 0.75rem 1.25rem;
+  border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus { left: 0; }
+
+/* ---- header ---- */
+#site-header { transition: box-shadow 0.25s ease; }
+#site-header.is-scrolled { box-shadow: 0 8px 32px -8px rgba(0,0,0,0.45); }
+
+/* ---- pulse dot (green = live) ---- */
+.pulse-dot {
+  position: relative; display: inline-block;
+  width: 0.55rem; height: 0.55rem;
+  border-radius: 50%; background: #34D399; flex-shrink: 0;
+}
+.pulse-dot::after {
+  content: ''; position: absolute; inset: -0.4rem; border-radius: 50%;
+  background: #34D399; opacity: 0.5;
+  animation: pulseRing 1.8s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+@keyframes pulseRing {
+  0%       { transform: scale(0.6); opacity: 0.5; }
+  75%, 100%{ transform: scale(1.8); opacity: 0; }
+}
+
+/* ---- OS badge ---- */
+.os-badge { transition: background-color .2s, color .2s, border-color .2s; }
+.os-badge[aria-pressed="true"] {
+  background-color: var(--blue-500);
+  border-color: var(--blue-500);
+  color: #fff;
+}
+
+/* ---- card hover lift ---- */
+.lift-on-hover { transition: transform .25s ease, box-shadow .25s ease; }
+.lift-on-hover:hover { transform: translateY(-5px); box-shadow: 0 24px 48px -16px rgba(15,23,42,0.18); }
+
+/* ---- accordion ---- */
+.accordion-panel { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.accordion-item.is-open .accordion-panel { max-height: 480px; }
+.accordion-chevron { transition: transform .25s ease; }
+.accordion-item.is-open .accordion-chevron { transform: rotate(180deg); }
+
+/* ---- review filter chips ---- */
+.filter-chip[aria-pressed="true"] {
+  background-color: var(--brand-900); color: #fff; border-color: var(--brand-900);
+}
+
+/* ---- video card ---- */
+.video-card .play-btn { transition: transform .2s ease, background-color .2s ease; }
+.video-card:hover .play-btn { transform: scale(1.1); background-color: var(--blue-500); color: #fff; }
+.video-card.is-playing .play-overlay { opacity: 0; pointer-events: none; }
+.video-card.is-playing .playing-note { opacity: 1; }
+.playing-note { opacity: 0; transition: opacity .3s ease; }
+
+/* ---- scroll reveal ---- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ---- mobile nav ---- */
+#mobile-menu {
+  transition: transform .3s ease, opacity .3s ease;
+  transform: translateY(-8px); opacity: 0; pointer-events: none;
+}
+#mobile-menu.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
+/* ---- mobile sticky bar ---- */
+#mobile-action-bar { padding-bottom: env(safe-area-inset-bottom, 0); }
+
+/* ---- hero gradient grid overlay ---- */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
